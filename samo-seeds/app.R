@@ -5,17 +5,29 @@
 library(tidyverse)
 library(shiny)
 library(shinythemes)
+library(shinyWidgets)
+library(here)
 
 ### define data etc once its clean
 
 
 
 # Define UI for application
-ui <- fluidPage(theme = shinytheme("flatly"), # theme may change if I have time :)
+ui <- fluidPage(
+  #setBackgroundImage(src = "IMG_20200407_133353.jpg"), # image as background; not sure I like it
+  theme = shinytheme("flatly"), # theme may change if I have time :)
                 
                 navbarPage("SAMO Seeds",
-                           tabPanel("Overview"
-                                    
+                           tabPanel("Overview",
+                                   mainPanel(
+                                     p("Conservation collection of seed necessitates careful planning. This tool aids seed collectors in organizing collection trips."),
+                                     img(src = "IMG_20200420_114317.jpg", 
+                                         width = 400,
+                                         align = "center"),
+                                     h4("Data"),
+                                     p("CalFlora data download tool (2021)"),
+                                     p("Santa Monica Mountains Rancho Sierra Vista seed collection program data (2020)")
+                                   ) 
                            ),
                            tabPanel("Flora",
                                     sidebarLayout(

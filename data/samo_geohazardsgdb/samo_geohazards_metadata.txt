@@ -1,0 +1,374 @@
+NPS_Information:
+  Metadata_Purpose: CSDGM
+  Metadata_Purpose: NPS
+  Metadata_Purpose: OnlineData
+  Metadata_Purpose: IMInventory
+  NPS_Unit_Information:
+    NPS_Unit_Type: Park
+    NPS_Unit_AlphaCode: SAMO
+  NPS_Unit_Information:
+    NPS_Unit_Type: Office
+    NPS_Unit_AlphaCode: GRI
+  NPS_Unit_Information:
+    NPS_Unit_Type: Office
+    NPS_Unit_AlphaCode: GRD
+  Datacat_Information:
+    Datacat_Edit_Date:
+      Single_Date/Time:
+        Calendar_Date: 20160531
+  Data_Store_Information:
+    Data_Steward:
+      Contact_Information:
+        Contact_Person_Primary:
+          Contact_Person: Stephanie O'Meara
+          Contact_Organization: Colorado State University
+        Contact_Position: Research Associate, Geologist/GIS Specialist/Data Manager
+        Contact_Address:
+          Address_Type: mailing and physical address
+          Address: 1201 Oak Ridge Drive, Suite 200
+          City: Fort Collins
+          State_or_Province: Colorado
+          Postal_Code: 80525
+          Country: USA
+        Contact_Voice_Telephone: (970) 491-6655
+        Contact_Electronic_Mail_Address: stephanie.omeara@colostate.edu
+        Hours_of_Service: 9:00 a.m. to 5:00 p.m. (MST), Monday - Friday
+    Data_Category: Geology
+    Data_Site: NR-GIS  
+Identification_Information:
+  Citation:
+    Citation_Information:
+      Originator: National Park Service (NPS) Geologic Resources Inventory (GRI) program
+      Publication_Date: 20160531
+      Title: Unpublished Digital Geohazards Map of Santa Monica Mountains National Recreation Area and Vicinity, California (NPS, GRD, GRI, SAMO, SAMO Geohazards digital map) adapted from a California Geological Survey digital database map by Irvine and McCrink (2012)
+      Edition: 1st
+      Geospatial_Data_Presentation_Form: map
+      Online_Linkage: http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_geohazardsgdb.zip
+      Online_Linkage: http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_geohazardskml.zip
+      Online_Linkage: http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_geohazards_metadata_faq.html
+  Description:
+    Abstract: The Unpublished Digital Geohazards Map of Santa Monica Mountains National Recreation Area and Vicinity, California is composed of GIS data layers and GIS tables in a 10.1 file geodatabase (samo_geohazards.gdb), a 10.1 ArcMap (.MXD) map document (samo_geohazards.mxd), individual 10.1 layer (.LYR) files for each GIS data layer, an ancillary map information (.PDF) document (samo_geology.pdf) which contains source map unit descriptions, as well as other source map text, figures and tables, metadata in FGDC text (.TXT) and FAQ (.HTML) formats, and a GIS readme file (samo_gis_readme.pdf).  Please read the samo_gis_readme.pdf for information pertaining to the proper extraction of the file geodatabase and other map files.  To request GIS data in ESRI 10.1 shapefile format contact Stephanie O’Meara (stephanie.omeara@colostate.edu; see contact information below).  The data is also available as a 2.2 KMZ/KML file for use in Google Earth, however, this format version of the map is limited in data layers presented and in access to GRI ancillary table information.  Google Earth software is available for free at: http://www.google.com/earth/index.html.  Users are encouraged to only use the Google Earth data for basic visualization, and to use the GIS data for any type of data analysis or investigation.  The data were completed as a component of the Geologic Resources Inventory (GRI) program, a National Park Service (NPS) Inventory and Monitoring (I&M) Division funded program that is administered by the NPS Geologic Resources Division (GRD).  Source geologic maps and data used to complete this GRI digital dataset were provided by the following: California Geological Survey.  Detailed information concerning the sources used and their contribution the GRI product are listed in the Source Citation section(s) of this metadata record (samo_geohazards_metadata_faq.html; available at http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_geohazards_metadata_faq.html).  Users of this data are cautioned about the locational accuracy of features within this dataset.  Based on the source map scale of 1:24,000 and United States National Map Accuracy Standards features are within (horizontally) 12.2 meters or 40 feet of their actual location as presented by this dataset.  Users of this data should thus not assume the location of features is exactly where they are portrayed in ArcGIS or other software used to display this dataset.  All GIS and ancillary tables were produced as per the NPS GRI Geology-GIS Geodatabase Data Model v. 2.3. (available at: http://science.nature.nps.gov/im/inventory/geology/GeologyGISDataModel.cfm).  The GIS data projection is NAD83, UTM Zone 11N, however, for the KML/KMZ format the data is projected upon export to WGS84 Geographic, the native coordinate system used by Google Earth.  The data is within the area of interest of Santa Monica Mountains National Recreation Area.
+    Purpose: The data are intended to assist NPS personnel in the protection and management of Santa Monica Mountains National Recreation Area.
+    Supplemental_Information: The data layers (feature classes) that comprise the Unpublished Digital Geohazards Map of Santa Monica Mountains National Recreation Area and Vicinity, California include: SAMOHZA (Hazard Area Features), SAMOHZAA (Hazard Area Feature Boundaries) and SAMOHZP (Hazard Point Features).  There are three additional ancillary map components, the Geologic Unit Information (SAMOUNIT) Table, the Source Map Information (SAMOMAP) Table and the Map PDF Document (samo_geology.pdf).  Refer to the NPS GRI Geology-GIS Geodatabase Data Model v. 2.3 (available at: http://science.nature.nps.gov/im/inventory/geology/GeologyGISDataModel.cfm) for detailed data layer (feature class) and table specifications including attribute field parameters, definitions and domains, and implemented topology rules and relationship classes.
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Single_Date/Time:
+        Calendar_Date: 20160531
+    Currentness_Reference: ground condition
+  Status:
+    Progress: Complete
+    Maintenance_and_Update_Frequency: None planned
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: -119.103185034424
+      East_Bounding_Coordinate: -118.248608135158
+      North_Bounding_Coordinate: 34.2508065699114
+      South_Bounding_Coordinate: 33.9998203114685
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: none
+      Theme_Keyword: Santa Monica Mountains National Recreation Area
+      Theme_Keyword: SAMO
+      Theme_Keyword: California
+      Theme_Keyword: digital data
+      Theme_Keyword: GIS data
+      Theme_Keyword: geodatabase
+      Theme_Keyword: file geodatabase
+      Theme_Keyword: KML
+      Theme_Keyword: KMZ
+      Theme_Keyword: Google Earth
+      Theme_Keyword: geology
+      Theme_Keyword: geohazards
+      Theme_Keyword: earth flow
+      Theme_Keyword: rockfall
+      Theme_Keyword: rock slide
+      Theme_Keyword: soil slide
+      Theme_Keyword: rock flow
+      Theme_Keyword: earth slide
+      Theme_Keyword: debris spread
+      Theme_Keyword: debris flow
+      Theme_Keyword: debris slide
+      Theme_Keyword: digital geologic map
+      Theme_Keyword: digital geologic-GIS map
+      Theme_Keyword: geologic map
+      Theme_Keyword: geologic-GIS map
+      Theme_Keyword: Geology Help Map Document
+      Theme_Keyword: geologic unit descriptions
+      Theme_Keyword: geologic units
+      Theme_Keyword: Geologic Unit Information Table
+      Theme_Keyword: UNIT table
+      Theme_Keyword: Source Map Information Table
+      Theme_Keyword: MAP table
+      Theme_Keyword: source geologic maps
+      Theme_Keyword: source maps
+      Theme_Keyword: SAMOHZA (Hazard Area Features)
+      Theme_Keyword: SAMOHZAA (Hazard Area Feature Boundaries)
+      Theme_Keyword: SAMOHZP (Hazard Point Features)
+      Theme_Keyword: National Park Service
+      Theme_Keyword: NPS
+      Theme_Keyword: Geologic Resources Division
+      Theme_Keyword: GRD
+      Theme_Keyword: Geologic Resources Inventory
+      Theme_Keyword: GRI
+      Theme_Keyword: Geologic Resource Evaluation
+      Theme_Keyword: GRE
+    Place:
+      Place_Keyword_Thesaurus: none
+      Place_Keyword: Santa Monica Mountains National Recreation Area
+      Place_Keyword: SAMO
+      Place_Keyword: California
+      Place_Keyword: United States
+      Place_Keyword: US
+      Place_Keyword: USA
+      Place_Keyword: North America
+    Place:
+      Place_Keyword_Thesaurus: National Park System Unit Code Thesaurus
+      Place_Keyword: SAMO
+      Place_Keyword: GRD
+      Place_Keyword: GRI
+    Place:
+      Place_Keyword_Thesaurus: National Park System Unit Name Thesaurus
+      Place_Keyword: Santa Monica Mountains National Recreation Area
+      Place_Keyword: Geologic Resources Division
+      Place_Keyword: Geologic Resources Inventory
+    Theme:
+      Theme_Keyword_Thesaurus: National Park Service Theme Category Thesaurus
+      Theme_Keyword: Geology
+    Theme:
+      Theme_Keyword_Thesaurus: ISO 19115 Topic Category
+      Theme_Keyword: Environment
+      Theme_Keyword: Geoscientific Information
+  Access_Constraints: None
+  Use_Constraints: Not for use at scale greater than 1:24,000 (source map scale).  Users of this data are cautioned about the locational accuracy of features within this dataset.  Based on the source map scale and United States National Map Accuracy Standards features are within (horizontally) 12.2 meters or 40 feet of their actual location as presented by this dataset.  Users of this data should thus not assume the location of features is exactly where they are portrayed in Google Earth, ArcGIS or other software used to display this dataset.
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Stephanie O'Meara
+        Contact_Organization: Colorado State University
+      Contact_Position: Research Associate, Geologist/GIS Specialist/Data Manager
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: 1201 Oak Ridge Drive, Suite 200
+        City: Fort Collins
+        State_or_Province: Colorado
+        Postal_Code: 80525
+        Country: USA
+      Contact_Voice_Telephone: (970) 491-6655
+      Contact_Electronic_Mail_Address: stephanie.omeara@colostate.edu
+      Hours_of_Service: 9:00 a.m. to 5:00 p.m. (MST), Monday - Friday
+  Data_Set_Credit: James Winter and Stephanie O'Meara (Colorado State University)
+  Native_Data_Set_Environment: ESRI ArcGIS 10.1 and Microsoft Windows 7
+  Cross_Reference:
+    Citation_Information:
+      Originator: National Park Service Geologic Resources Inventory (GRI) program
+      Publication_Date: 20160531
+      Title: Metadata for the Unpublished Digital Geohazards Map of Santa Monica Mountains National Recreation Area and Vicinity, California (NPS, GRD, GRI, SAMO, SAMO geohazards digital map)
+      Edition: 1st
+      Geospatial_Data_Presentation_Form: document
+      Online_Linkage: http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_geohazards_metadata_faq.html
+Data_Quality_Information:
+  Attribute_Accuracy:
+    Attribute_Accuracy_Report: Feature and table attribution was derived and checked with the source map(s).  Attribution was checked (QCd) for errors.  Users of this data are advised to FULLY and CAREFULLY READ the "DISTRIBUTION LIABILITY" section of this metadata before using the data.
+  Logical_Consistency_Report: GIS data in 10.1 file geodatabase, and shapefile (.SHP) and DBASEIV (.DBF) table file formats.
+  Completeness_Report: All data is considered complete to the extent of the source map(s).
+  Positional_Accuracy:
+    Horizontal_Positional_Accuracy:
+      Horizontal_Positional_Accuracy_Report: Data was produced from digital source data.  Users of this data are cautioned about the locational accuracy of features within this dataset.  Based on the source map scale and United States National Map Accuracy Standards features are within (horizontally) 12.2 meters or 40 feet of their actual location as presented by this dataset.  Users of this data should thus not assume the location of features is exactly where they are portrayed in ArcGIS or other software used to display this dataset.  The PRECISION of any Shapefile (SHP) files is DOUBLE.
+  Lineage:
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: Irvine, P.J. and McCrink, T.P.
+          Publication_Date: 2012
+          Title: Landslide Inventory of the Santa Monica Mountains Region, Los Angeles and Ventura Counties, California
+          Edition: 1st
+          Geospatial_Data_Presentation_Form: map
+          Series_Information:
+            Series_Name: digital database
+            Issue_Identification: unpublished
+          Publication_Information:
+            Publication_Place: Sacramento, California
+            Publisher: California Geological Survey (CGS)
+      Source_Scale_Denominator: 24000
+      Type_of_Source_Media: digital data
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 2012
+        Source_Currentness_Reference: publication date
+      Source_Citation_Abbreviation: CGS digital landslide database
+      Source_Contribution: Features and attribution were derived from source digital data.  Ancillary map text, including unit descriptions, and graphics, if present on the source map, were captured, formatted and added to the ancillary map PDF document.  See the Process Step section for additional information.
+    Process_Step:
+      Process_Description: 1.) GIS features were produced from source digital data.  See the Source Information Contribution section(s) for specific source map details.  GIS features were first imported into a GRI data model compliant geodatabase.  For details on the GRI data model see the NPS GRI Geology-GIS Geodatabase Data Model v. 2.3 (available at: http://science.nature.nps.gov/im/inventory/geology/GeologyGISDataModel.cfm).  2.) Line quality was checked and if warranted edited to ensure good quality linework.  3.) Feature attribution was derived using the source data attribution, and the source printed/plotted map if available.  4.) Data Model topology rules were validated for all features and any topology errors corrected.  5.) Quality control (QC) consisted of checking features and their attribution against the source digital data, as well as against the source printed/plotted map if available.  A GRI developed ArcObjects tool was run to check for GRI data model validation and feature-related consistency.  6.) The UNIT and MAP tables were populated and checked against the source (s).  Relationship classes were also added and used to ensure attribution consistency between feature class and table attribution.  7.) Feature symbology was produced for all feature classes.  An attempt was made to best match symbology to its source map, however, in some cases features symbology maybe slightly modified, primarily based on the limitations of the ArcGIS geology style.  In some cases, however, symbology may have been modified to reconcile differences from multiple sources.  8.) GIS feature classes were exported from the geodatabase to shapefile (SHP) format, and GIS tables exported to DBASEIV (DBF) format.  Layer (LYR) files were also exported.  9.) The ancillary map information PDF document, see the Supplemental Information section for additional information, was produced from textual information and figures present on the source map(s) and/or in digital data files.  If applicable, source map images were produced at 150dpi or greater resolution and optical character recognition (OCR) software was used to produce text from source map text.  The text, source map images and other ancillary source map information were added to a Help & Manual (HMXZ) template file.  The HMXZ file was then compiled to produce the ancillary map PDF document.  Any compilation errors were then checked and corrected and the document was reviewed for content, usability and grammatical errors.
+      Source_Used_Citation_Abbreviation: CGS digital landslide database
+      Process_Date: 20160531
+      Process_Contact:
+        Contact_Information:
+          Contact_Person_Primary:
+            Contact_Person: Stephanie O'Meara
+            Contact_Organization: Colorado State University
+          Contact_Position: Research Associate, Geologist/GIS Specialist/Data Manager
+          Contact_Address:
+            Address_Type: mailing address
+            Address: 1201 Oak Ridge Drive, Suite 200
+            City: Fort Collins
+            State_or_Province: Colorado
+            Postal_Code: 80525-5589
+            Country: USA
+          Contact_Voice_Telephone: (970) 491-6655
+          Contact_Electronic_Mail_Address: stephanie.omeara@colostate.edu
+          Hours_of_Service: 9:00 a.m. to 5:00 p.m. (MST), Monday - Friday
+Spatial_Reference_Information:
+  Horizontal_Coordinate_System_Definition:
+    Coordinate_System_Name:
+      Geographic_Coordinate_System_Name: GCS_North_American_1983
+      Projected_Coordinate_System_Name: NAD_1983_UTM_Zone_11N
+    Planar:
+      Grid_Coordinate_System:
+        Grid_Coordinate_System_Name: Universal Transverse Mercator
+        Universal_Transverse_Mercator:
+          UTM_Zone_Number: 11
+          Transverse_Mercator:
+            Scale_Factor_at_Central_Meridian: 0.999600
+            Longitude_of_Central_Meridian: -117.0
+            Latitude_of_Projection_Origin: 0.000000
+            False_Easting: 500000.000000
+            False_Northing: 0.000000
+      Planar_Coordinate_Information:
+        Planar_Coordinate_Encoding_Method: coordinate pair
+        Planar_Distance_Units: meters
+        Coordinate_Representation:
+          Abscissa_Resolution: 0.000007
+          Ordinate_Resolution: 0.000007
+    Geodetic_Model:
+      Horizontal_Datum_Name: North American Datum of 1983
+      Ellipsoid_Name: Geodetic Reference System 80
+      Semi-major_Axis: 6378137.000000
+      Denominator_of_Flattening_Ratio: 298.257222
+Entity_and_Attribute_Information:
+  Overview_Description:
+    Entity_and_Attribute_Overview: Refer to the NPS GRI Geology-GIS Geodatabase Data Model v. 2.3 (available at: http://science.nature.nps.gov/im/inventory/geology/GeologyGISDataModel.cfm) for detailed feature class and table attribute field parameters, definitions and domains, and implemented relationship classes, as well as for implemented feature class topology rules.
+    Entity_and_Attribute_Detail_Citation: NPS GRI Geology-GIS Geodatabase Data Model v. 2.3. (available at: http://science.nature.nps.gov/im/inventory/geology/GeologyGISDataModel.cfm)
+Distribution_Information:
+  Distributor:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Stephanie O'Meara
+        Contact_Organization: Colorado State University
+      Contact_Position: Research Associate, Geologist/GIS Specialist/Data Manager
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: 1201 Oak Ridge Drive, Suite 200
+        City: Fort Collins
+        State_or_Province: Colorado
+        Postal_Code: 80525
+        Country: USA
+      Contact_Voice_Telephone: (970) 491-6655
+      Contact_Electronic_Mail_Address: stephanie.omeara@colostate.edu
+      Hours_of_Service: 8:00 a.m. to 4:00 p.m. (MST), Monday - Friday
+      Contact_Instructions: GRI data are available at: http://irma.nps.gov/App/Reference/Search
+  Resource_Description: GIS map data available in 10.1 file geodatabase format (in samo_geohazardsgdb.zip) and in 2.2 KML/KMZ format (in samo_geohazardskml.zip)
+  Distribution_Liability:
+    The National Park Service shall not be held liable for improper or incorrect use of the data described and/or contained herein.  These data and related graphics are not legal documents and are not intended to be used as such.
+
+    The information contained in these data is dynamic and may change over time.  The data are not better than the original sources from which they were derived.  It is the responsibility of the data user to use the data appropriately and consistent within the limitations of geospatial data in general and these data in particular.  The related graphics are intended to aid the data user in acquiring relevant data; it is not appropriate to use the related graphics as data.
+
+    The National Park Service gives no warranty, expressed or implied, as to the accuracy, reliability, or completeness of these data.  It is strongly recommended that these data are directly acquired from an NPS server and not indirectly through other sources which may have changed the data in some way.  Although these data have been processed successfully on a computer system at the National Park Service, no warranty, expressed or implied is made regarding the utility of the data on another system or for general scientific purposes, nor shall the act of distribution constitute any such warranty.  This disclaimer applies to both to individual use of the data and aggregate use with other data.
+  Standard_Order_Process:
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: GDB
+        Format_Version_Number: ArcGIS 10.1
+        Format_Specification: GIS (geodatabase format) map download (samo_geohazardsgdb.zip)
+        File_Decompression_Technique: Compression applied
+        Transfer_Size: 9.4
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_geohazardsgdb.zip
+          Access_Instructions: Download GIS (geodatabase format) map download (samo_geohazardsgdb.zip)
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: KML/KMZ
+        Format_Version_Number: 2.2
+        Format_Specification: Google Earth (kml/kmz format) map download (samo_geohazardskml.zip)
+        File_Decompression_Technique: Compression applied
+        Transfer_Size: 11.4
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_geohazardskml.zip
+          Access_Instructions: Download Google Earth (kml/kmz format) map download (samo_geohazardskml.zip)
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: PDF
+        Format_Version_Number: 9
+        Format_Specification: Ancillary Map Information PDF Document
+        File_Decompression_Technique: Compression not applied
+        Transfer_Size: 6.9
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_geology.pdf
+          Access_Instructions: Ancillary Map Information document, samo_geology.pdf, in map download files
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: PDF
+        Format_Version_Number: 9
+        Format_Specification: GIS Readme PDF Document
+        File_Decompression_Technique: Compression not applied
+        Transfer_Size: 0.1
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_gis_readme.pdf
+          Access_Instructions: GIS Readme document, samo_gis_readme.pdf, in map download files
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: HTML
+        Format_Version_Number: 4
+        Format_Specification: FAQ Metadata HTML File
+        File_Decompression_Technique: Compression not applied
+        Transfer_Size: 0.1
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: http://nrdata.nps.gov/geology/gri_data/gis/samo/samo_geohazards_metadata_faq.html
+          Access_Instructions: FAQ Metadata HTML file, samo_geohazards_faq.html, in map download files
+    Fees: None
+    Ordering_Instructions: Search and download GRI data at: http://irma.nps.gov/App/Reference/Search
+  Available_Time_Period:
+    Time_Period_Information:
+      Single_Date/Time:
+        Calendar_Date: 20160531
+Metadata_Reference_Information:
+  Metadata_Date: 20160531
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Stephanie O'Meara
+        Contact_Organization: Colorado State University
+      Contact_Position: Research Associate, Geologist/GIS Specialist/Data Manager
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: 1201 Oak Ridge Drive, Suite 200
+        City: Fort Collins
+        State_or_Province: Colorado
+        Postal_Code: 80525-5589
+        Country: USA
+      Contact_Voice_Telephone: (970) 491-6655
+      Contact_Electronic_Mail_Address: stephanie.omeara@colostate.edu
+      Hours_of_Service: 9:00 a.m. to 5:00 p.m. (MST), Monday - Friday
+  Metadata_Standard_Name: FGDC Content Standards for Digital Geospatial Metadata
+  Metadata_Standard_Version: FGDC-STD-001-1998
+  Metadata_Time_Convention: local time
+  Metadata_Access_Constraints: None
+  Metadata_Use_Constraints: None
+  Metadata_Extensions:
+    Online_Linkage: http://www.fgdc.gov/standards/
+    Profile_Name: FGDC Geospatial Metadata Standards

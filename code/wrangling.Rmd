@@ -11,6 +11,42 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(lubridate)
+library(janitor)
+library(sf)
+
+```
+
+```{r}
+flowering_times <- read_csv(here("data/RSV_Flora_2020.csv")) %>%
+  clean_names() %>% 
+  select(taxon, collecting, common_name, lifeform:dec) %>% 
+  mutate(collecting = case_when(collecting == "X" ~ "yes",
+                                TRUE ~ "no")) %>% 
+  pivot_longer(cols = jan:dec, values_drop_na = TRUE ) %>% write_csv(here("data/flowering_times.csv"))
+
+
+natives_vcla <- read_csv(here("data/vc_la_native_plants.csv")) %>% 
+  clean_names() %>% 
+  mutate(date = ymd(date)) %>% 
+  write_csv(here("data/natives_vcla.csv"))
+
+collection_locations <- read_csv(here("data/RSV_Collection Locations_2020_BB.csv"))
+  
+```
+```{r}
+protected_areas <- read_sf(here("data/Protected Areas.kml"))
+
+natives_location <- natives_vcla %>% 
+  st_as_sf(coords = c("longitude","latitude")) %>% 
+  st_set_crs(st_crs(protected_areas))
+
+
+```
+
+
+```{r}
+
+
 
 ```
 

@@ -11,18 +11,17 @@ library(here)
 # DATA
 
 ## spatial data
-col_loc <- here("data/loc.gpkg")
-samo_plants <- here("data/natives_samo.gpkg")
+col_loc <- read_sf(here("data/loc.gpkg"))
+samo_plants <- read_sf(here("data/natives_samo.gpkg"))
 
 ## other data
-flowering_times <- here("data/flowering_times.csv")
+flowering_times <- read_csv(here("data/flowering_times.csv"))
 
 
 
 
 
-
-# Define UI for application
+# UI definition
 ui <- fluidPage(
   #setBackgroundImage(src = "IMG_20200407_133353.jpg"), # image as background; not sure I like it
   theme = shinytheme("flatly"), # theme may change if I have time :)
@@ -30,26 +29,29 @@ ui <- fluidPage(
                 navbarPage("SAMO Seeds",
                            tabPanel("Overview",
                                    mainPanel(
-                                     p("Conservation collection of seed necessitates careful planning. This tool aids seed collectors in organizing collection trips."),
+                                     p("Conservation collection of seed necessitates careful planning.
+                                        This tool aids seed collectors in organizing collection trips."),
                                      img(src = "IMG_20200420_114317.jpg", 
                                          width = 400,
                                          align = "center"),
                                      h4("Data"),
                                      p("CalFlora data download tool (2021)"),
-                                     p("Santa Monica Mountains Rancho Sierra Vista seed collection program data (2020)")
+                                     p("Santa Monica Mountains Rancho Sierra Vista 
+                                       seed collection program data (2020)")
                                    ) 
                            ),
                            tabPanel("Flora",
                                     sidebarLayout(
                                         sidebarPanel("Choose Taxon",
-                                                     selectInput("select", label = h3("Select box"), 
-                                                                 choices = list("Choice 1" = 1, 
-                                                                                "Choice 2" = 2, 
-                                                                                "Choice 3" = 3), 
-                                                                 selected = 1)
+                                                     selectInput("select", 
+                                                                 label = h5("Select taxon of interest"), 
+                                                                 inputId = "pick_taxon",
+                                                                 choices = unique(flowering_times$taxon)
+                                                                 )
                                         ),
                                         mainPanel("output",
-                                                  plotOutput("HERE")
+                                                  textOutput("flowering_text"),
+                                                  plotOutput("flowering_time")
                                         )
                                     )
                            ),
@@ -103,11 +105,28 @@ ui <- fluidPage(
     )
 )
 
-# Define server logic
+# Server Definition
 
 server <- function(input, output) {
 
-    ##Need to clean data to use it lol
+# taxon tab
+  selected_taxon <- reactive({
+    flowering_times %>%
+      filter(taxon %in% input$pick_taxon)
+  })
+  
+  # taxon outputs
+  output$flowering_time <- renderPlot(
+    ggplot(data = selected_taxon, 
+           aes(x = month))+
+      geom_col()
+  )
+  
+  output$flowering_text <- renderText({
+    paste(input$pick_taxon,
+          " flowers from")
+  })
+   
     
     
 }

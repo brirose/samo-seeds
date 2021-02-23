@@ -24,11 +24,15 @@ flowering_times <- read_csv(here("data/RSV_Flora_2020.csv")) %>%
   dplyr::select(taxon, collecting, common_name, lifeform:dec) %>% 
   mutate(collecting = case_when(collecting == "X" ~ "yes",
                                 TRUE ~ "no")) %>% 
-  pivot_longer(cols = jan:dec, values_drop_na = TRUE ) %>% write_csv(here("data/flowering_times.csv"))
+  pivot_longer(cols = jan:dec, 
+               values_drop_na = TRUE,
+               names_to = "month") %>%
+  filter(collecting == "yes") %>% 
+  dplyr::select(taxon, common_name:month) %>%
+  write_csv(here("data/flowering_times.csv"))
 
 
-natives_vcla <- read_csv(here("data/vc_la_native_plants.csv")) %>% 
-  clean_names() %>% 
+natives_vcla <- read_csv(here("data/vc_la_native_plants.csv")) %>%   clean_names() %>% 
   mutate(date = ymd(date)) %>% 
   write_csv(here("data/natives_vcla.csv"))
 

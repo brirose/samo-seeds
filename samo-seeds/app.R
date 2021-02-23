@@ -8,7 +8,17 @@ library(shinythemes)
 library(shinyWidgets)
 library(here)
 
-### define data etc once its clean
+# DATA
+
+## spatial data
+col_loc <- here("data/loc.gpkg")
+samo_plants <- here("data/natives_samo.gpkg")
+
+## other data
+flowering_times <- here("data/flowering_times.csv")
+
+
+
 
 
 

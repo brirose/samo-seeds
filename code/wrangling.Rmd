@@ -13,13 +13,15 @@ library(here)
 library(lubridate)
 library(janitor)
 library(sf)
+library(raster)
+library(tmap)
 
 ```
 
 ```{r}
 flowering_times <- read_csv(here("data/RSV_Flora_2020.csv")) %>%
   clean_names() %>% 
-  select(taxon, collecting, common_name, lifeform:dec) %>% 
+  dplyr::select(taxon, collecting, common_name, lifeform:dec) %>% 
   mutate(collecting = case_when(collecting == "X" ~ "yes",
                                 TRUE ~ "no")) %>% 
   pivot_longer(cols = jan:dec, values_drop_na = TRUE ) %>% write_csv(here("data/flowering_times.csv"))
@@ -30,22 +32,54 @@ natives_vcla <- read_csv(here("data/vc_la_native_plants.csv")) %>%
   mutate(date = ymd(date)) %>% 
   write_csv(here("data/natives_vcla.csv"))
 
+
 collection_locations <- read_csv(here("data/RSV_Collection Locations_2020_BB.csv"))
   
 ```
 ```{r}
-protected_areas <- read_sf(here("data/Protected Areas.kml"))
+protected_areas <- read_sf(here("data/Protected Areas.kml")) %>% 
+  clean_names()
+
+locations <- protected_areas %>% 
+  dplyr::select(name) %>% 
+  group_by(name) %>% 
+  summarise()
+  
+
+ggplot()+
+  geom_sf(data = collection_areas, aes(fill = name))
+
 
 natives_location <- natives_vcla %>% 
   st_as_sf(coords = c("longitude","latitude")) %>% 
   st_set_crs(st_crs(protected_areas))
 
+collection_areas <- locations %>% 
+  filter(name %in% c("Arroyo Sequit",
+                     "Cheeseboro/ Palo Comado Canyons",
+                     "Circle X Ranch",
+                     "Deer Creek",
+                     "Diamond X Ranch",
+                     "King Gillette Ranch",
+                     "Paramount Ranch",
+                     "Rancho Sierra Vista/Satwiwa",
+                     "Rocky Oaks",
+                     "Solstice Canyon",
+                     "Upper Solstice Canyon",
+                     "Yellowhill",
+                     "Zuma/Trancas Canyons"
+  ))# 
+
+st_write(collection_areas, here("data","loc.gpkg"),format = "GPKG")
+
 
 ```
 
 
 ```{r}
-
+natives_samo <- natives_location %>% 
+  st_join(collection_areas, join = st_within) %>% 
+  st_write(here("data/natives_samo.gpkg"), format = "GPKG")
 
 
 ```

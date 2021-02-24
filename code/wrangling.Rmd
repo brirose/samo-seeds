@@ -15,6 +15,7 @@ library(janitor)
 library(sf)
 library(raster)
 library(tmap)
+library(stringr)
 
 ```
 
@@ -23,13 +24,18 @@ flowering_times <- read_csv(here("data/RSV_Flora_2020.csv")) %>%
   clean_names() %>% 
   dplyr::select(taxon, collecting, common_name, lifeform:dec) %>% 
   mutate(collecting = case_when(collecting == "X" ~ "yes",
-                                TRUE ~ "no")) %>% 
+                                TRUE ~ "no"),
+         family = str_to_title(family),
+         lifeform = str_to_lower(lifeform)) %>% 
   pivot_longer(cols = jan:dec, 
                values_drop_na = TRUE,
                names_to = "month") %>%
+  mutate(month = str_to_title(month)) %>% 
   filter(collecting == "yes") %>% 
-  dplyr::select(taxon, common_name:month) %>%
-  write_csv(here("data/flowering_times.csv"))
+  dplyr::select(taxon, common_name:month)
+
+
+write_csv(flowering_times, here("data/flowering_times.csv"))
 
 
 natives_vcla <- read_csv(here("data/vc_la_native_plants.csv")) %>%   clean_names() %>% 
@@ -93,17 +99,16 @@ st_write(natives_samo, here("data/desired_natives_samo.gpkg"), format = "GPKG")
 
 ```
 ```{r}
-a_mill <- samo_plants %>% 
-      filter(taxon == "Achillea millefolium") %>% 
-  mutate(year = year(date))
+ flowering_now <- flowering_times %>% 
+      filter(month %in% c("May", "Jun")) %>% 
+      dplyr::select(taxon, month) %>% 
+  mutate(id = as.numeric(factor(taxon)))%>%
+  pivot_wider(id_cols = id,
+              names_from = month,
+              values_from = taxon) 
+      
 
 
-
-ggplot(
-      data = a_mill,
-      aes(x = year)
-)+
-  geom_bar()
 ```
 
 

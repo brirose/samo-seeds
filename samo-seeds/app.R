@@ -44,41 +44,104 @@ ui <- fluidPage(
           seed collection program data (2020)")
       )
     ),# close overview
+    
+    ####----TAXON TAB ----####
     tabPanel(
       "Flora",
       sidebarLayout(
         sidebarPanel(
           "Choose Taxon",
           selectInput(
-            "select", 
-            label = h5("Select taxon of interest"), 
-            inputId = "flora_taxon",
+            "Select taxon of interest", 
+            inputId = "taxon_taxon",
             choices = unique(flowering_times$taxon)
           )
         ),# close sidebar
         mainPanel(
           "Species information",
+          textOutput(
+            "sp_info"
+          ),
+          h5("Observed Locations"),
           tmapOutput(
             "loc_map"
           )
         ) # close main panel
       )
-    ) # close flora tab
+    ), # close TAXON tab
+    
+    ####----FLOWERING TAB ----####
+    tabPanel(
+      "In Flower",
+      sidebarLayout(
+        sidebarPanel(
+          "widgets",
+          checkboxGroupInput(
+            "Select collection months",
+            inputId = "flowering_months",
+            choices = unique(flowering_times$month)
+          )
+        ),
+        mainPanel("Collection species in flower",
+                  tableOutput("flowering_table")
+                  )
+      )
+      
+    ) # close FLOWERING tab
   )
 )
 
 # SERVER
 server <- function(input, output) {
-####----FLORA TAB ----
-  ##filter points
-   flora_loc <- reactive({
+  
+####----TAXON TAB ----####
+  ##--filter from inputs--##
+   taxon_loc <- reactive({
     samo_plants %>% 
-      filter(taxon %in% input$flora_taxon)
+      filter(taxon %in% input$taxon_taxon)
   })
-  ##tmap  
+   
+   taxon_info <- reactive({
+     flowering_times %>% 
+       filter(taxon %in% input$taxon_taxon) %>% 
+       slice(1)
+   })
+     
+  ##--outputs--##
+   #-map-#
   output$loc_map <- renderTmap({
-    tm_shape(flora_loc())+
+    tm_shape(taxon_loc())+
       tm_dots() 
+  })
+  
+  #-taxon info-#
+  output$sp_info <- renderText({
+    paste(
+       input$taxon_taxon, "(", taxon_info()$common_name, 
+       ") is a ", taxon_info()$lifeform,
+       "of family", taxon_info()$family,
+       " that flowers from ", taxon_info()$start_bloom, 
+       " to ", taxon_info()$end_bloom, "."
+       
+    )
+  })
+  
+####----FLOWERING TAB ----####
+  ##--filter from inputs--##
+  flowering_taxa <- reactive({
+    flowering_times %>% 
+      filter(month %in% input$flowering_months) %>% 
+      dplyr::select(taxon, month) %>% 
+      mutate(id = as.numeric(factor(taxon))) %>% 
+      pivot_wider(id_cols = id,
+                  names_from = month,
+                  values_from = taxon) %>% 
+      dplyr::select(-id)
+  })
+  
+  ##--output table--##
+  output$flowering_table <- renderTable({
+    flowering_taxa()
   })
   
 }

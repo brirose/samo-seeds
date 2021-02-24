@@ -50,8 +50,8 @@ locations <- protected_areas %>%
   summarise()
   
 
-ggplot()+
-  geom_sf(data = collection_areas, aes(fill = name))
+#ggplot()+
+  #geom_sf(data = collection_areas, aes(fill = name))
 
 
 natives_location <- natives_vcla %>% 
@@ -81,10 +81,30 @@ st_write(collection_areas, here("data","loc.gpkg"),format = "GPKG")
 
 
 ```{r}
+species_desired <- unique(flowering_times$taxon)
+
 natives_samo <- natives_location %>% 
-  st_join(collection_areas, join = st_within) %>% 
-  st_write(here("data/natives_samo.gpkg"), format = "GPKG")
+  st_join(collection_areas, join = st_within) %>%
+  filter(taxon %in% species_desired) %>% 
+  dplyr::select(id, taxon, date, geometry)
+
+st_write(natives_samo, here("data/desired_natives_samo.gpkg"), format = "GPKG")
 
 
 ```
+```{r}
+a_mill <- samo_plants %>% 
+      filter(taxon == "Achillea millefolium") %>% 
+  mutate(year = year(date))
+
+
+
+ggplot(
+      data = a_mill,
+      aes(x = year)
+)+
+  geom_bar()
+```
+
+
 

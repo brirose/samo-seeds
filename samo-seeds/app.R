@@ -6,6 +6,7 @@ library(shinyWidgets)
 library(here)
 library(lubridate)
 library(tmap)
+library(sf)
 
 #tmap setup
 tmap_mode("view")
@@ -50,19 +51,17 @@ ui <- fluidPage(
       "Flora",
       sidebarLayout(
         sidebarPanel(
-          "Choose Taxon",
           selectInput(
-            "Select taxon of interest", 
+            h4("Select taxon of interest"), 
             inputId = "taxon_taxon",
             choices = unique(flowering_times$taxon)
+          ),
+          h4("Species information"),
+          textOutput(
+            "sp_info"
           )
         ),# close sidebar
         mainPanel(
-          "Species information",
-          textOutput(
-            "sp_info"
-          ),
-          h5("Observed Locations"),
           tmapOutput(
             "loc_map"
           )
@@ -75,19 +74,44 @@ ui <- fluidPage(
       "In Flower",
       sidebarLayout(
         sidebarPanel(
-          "widgets",
+          "Collection List",
           checkboxGroupInput(
             "Select collection months",
             inputId = "flowering_months",
             choices = unique(flowering_times$month)
           )
         ),
-        mainPanel("Collection species in flower",
-                  tableOutput("flowering_table")
-                  )
+        mainPanel(
+          "Collection species in flower",
+          tableOutput("flowering_table")
+        )
       )
       
-    ) # close FLOWERING tab
+    ), # close FLOWERING tab
+    
+    ####----LOCATION TAB----####
+    tabPanel(
+      "Location",
+      sidebarLayout(
+        sidebarPanel(
+          selectInput(
+            "Select Location",
+            inputId = "loc_name",
+            choices = col_loc$name
+          ),
+          radioButtons(
+            "Select Month",
+            inputId = "loc_month",
+            choices = unique(flowering_times$month)
+          )
+        ),
+        mainPanel(
+          tmapOutput(
+            "flowering_map"
+          )
+        )
+      )
+    )# close LOC tab
   )
 )
 
@@ -110,6 +134,7 @@ server <- function(input, output) {
   ##--outputs--##
    #-map-#
   output$loc_map <- renderTmap({
+    tm_basemap("Esri.WorldTopoMap") +
     tm_shape(taxon_loc())+
       tm_dots() 
   })
@@ -142,6 +167,35 @@ server <- function(input, output) {
   ##--output table--##
   output$flowering_table <- renderTable({
     flowering_taxa()
+  })
+  
+####----LOCATION----####
+  ##--filter from inputs--##
+  loc_place <- reactive({
+    col_loc %>% 
+      filter(
+        name %in% input$loc_name
+      )
+  })
+  
+  loc_time <- reactive({
+    flowering_times %>% 
+      filter(
+        month %in% input$loc_month
+      )
+  })
+  
+  loc_flowering <- reactive({samo_plants %>% 
+      filter(taxon %in% loc_time()$taxon) %>% 
+      st_filter(loc_place(), 
+                join = st_within)
+  })
+    
+  ##--output--##
+  output$flowering_map <- renderTmap({
+    tm_basemap("Esri.WorldTopoMap") +
+    tm_shape(loc_flowering())+
+      tm_dots(col = "taxon") 
   })
   
 }

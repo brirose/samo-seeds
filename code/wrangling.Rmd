@@ -83,19 +83,24 @@ collection_areas <- locations %>%
 st_write(collection_areas, here("data","loc.gpkg"),format = "GPKG")
 
 
+plot(natives_location)
+
+plot(collection_areas)
 ```
 
 
 ```{r}
 species_desired <- unique(flowering_times$taxon)
 
-natives_samo <- natives_location %>% 
-  st_join(collection_areas, join = st_within) %>%
+natives_samo <- st_filter(natives_location,
+                          collection_areas, 
+                          join = st_within) %>% 
   filter(taxon %in% species_desired) %>% 
   dplyr::select(id, taxon, date, geometry)
 
-st_write(natives_samo, here("data/desired_natives_samo.gpkg"), format = "GPKG")
+st_write(natives_samo, here("data/desired_natives_samo.gpkg"), format = "GPKG", append = FALSE)
 
+plot(natives_samo)
 
 ```
 ```{r}
@@ -111,5 +116,22 @@ st_write(natives_samo, here("data/desired_natives_samo.gpkg"), format = "GPKG")
 
 ```
 
+```{r}
+loc_place <- col_loc %>% 
+      filter(name == "Paramount Ranch")
+
+loc_time <- flowering_times %>% 
+      filter(month == "May")
+
+loc_flowering <- samo_plants %>% 
+  filter(taxon %in% loc_time$taxon) %>% 
+  st_filter(loc_place, join = st_within)
+
+plot(loc_flowering)   
+  
+
+    tm_shape(loc_flowering)+
+      tm_dots(col = "taxon") 
+```
 
 

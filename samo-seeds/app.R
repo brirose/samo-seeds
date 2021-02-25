@@ -111,7 +111,36 @@ ui <- fluidPage(
           )
         )
       )
-    )# close LOC tab
+    ),# close LOC tab
+    
+    ####----ID----####
+    tabPanel(
+      "Commonly Collected Species",
+      sidebarLayout(
+        sidebarPanel(
+          selectInput(
+            inputId = "select_plant",
+            label = h5("Select plant species:"),
+            choices = list(
+              "Anemopsis californica" = "anecal",
+              "Artemesia douglasiana" = "artdou",
+              "Encelia californica" = "enccal",
+              "Eriogonum cinereum" = "ericin",
+              "Eriogonum fasciculatum" = "erifas",
+              "Eschscholzia californica" = "esccal",
+              "Grindelia camporum" = "gricam",
+              "Phacelia grandiflora" = "gricam",
+              "Rosa californica" = "roscal",
+              "Salvia leucophylla" = "salleu",
+              "Solanum xantii" = "solxan"
+            )
+          )
+        ),
+        mainPanel(
+          uiOutput("plantimg")
+        )
+      )
+    )
   )
 )
 
@@ -196,6 +225,30 @@ server <- function(input, output) {
     tm_basemap("Esri.WorldTopoMap") +
     tm_shape(loc_flowering())+
       tm_dots(col = "taxon") 
+  })
+  
+  ####----ID----####
+  output$plantimg <- renderUI({
+    if(input$select_plant == "anecal"){
+      img(height = "70%", width = "70%", src = "ane_cal.jpg")}
+    else if(input$select_plant == "artdou"){
+      img(height = "75%", width = "75%", src = "art_dou.jpg")}
+    else if(input$select_plant == "enccal"){
+      img(height = "75%", width = "75%", src = "enc_cal.jpg")}
+    else if(input$select_plant == "ericin"){
+      img(height = "75%", width = "75%", src = "eri_cin.jpg")}
+    else if(input$select_plant == "esccal"){
+      img(height = "75%", width = "75%", src = "esc_cal.jpg")}
+    else if(input$select_plant == "gricam"){
+      img(height = "75%", width = "75%", src = "gri_cam.jpg")}
+    else if(input$select_plant == "phagra"){
+      img(height = "75%", width = "75%", src = "pha_gra.jpg")}
+    else if(input$select_plant == "roscal"){
+      img(height = "75%", width = "75%", src = "ros_cal.jpg")}
+    else if(input$select_plant == "salleu"){
+      img(height = "75%", width = "75%", src = "sal_leu.jpg")}
+    else if(input$select_plant == "solxan"){
+      img(height = "75%", width = "75%", src = "sol_xan.jpg")}
   })
   
 }

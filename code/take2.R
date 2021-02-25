@@ -118,3 +118,28 @@ server <- function(input, output) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
+tabPanel("Prey Descriptions",
+         sidebarLayout(
+           sidebarPanel(selectInput(inputId = "select_prey", 
+                                    label = h5("Select prey species:"), 
+                                    choices = list("Peppermint Shrimp" = "pep",
+                                                   "Mysid Shrimp" = "mys",
+                                                   "Cardinalfish" = "car",
+                                                   "Saddle Blenny" = "sad",
+                                                   "Other" = "oth"),
+                                    selected = "pep"),
+           ),
+           mainPanel(uiOutput("img1"),
+                     textOutput("description"))
+
+output$img1 <- renderUI({
+  if(input$select_prey == "pep"){
+    img(height = "75%", width = "75%", src = 'https://cdn11.bigcommerce.com/s-sid5v/images/stencil/2048x2048/products/1091/3349/2__49824.1553225499.jpg?c=2')}
+  else if(input$select_prey == "mys"){
+    img(height = "75%", width = "75%", src = 'https://reefs.com/blog/wp-content/uploads/2003/09/breeder1a-146b69570826ead8b1c21be3489a5300.jpg')}
+  else if(input$select_prey == "car"){
+    img(height = "75%", width = "75%", src = 'http://www.nad-lembeh.com/wp-content/uploads/2013/09/MG_5104.jpg')}
+  else if(input$select_prey == "sad"){
+    img(height = "75%", width = "75%", src = 'https://www.petmd.com/sites/default/files/Labrisomid-Saddl-Blenny%209990733.jpg')}
+}

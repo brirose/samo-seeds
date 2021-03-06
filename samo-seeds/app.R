@@ -33,12 +33,25 @@ ui <- fluidPage(
       mainPanel(
         width = 12,
         p("Conservation collection of seed necessitates careful planning.
-          This tool aids seed collectors in organizing collection trips."),
+          This tool aids seed collectors in organizing collection trips.",
+          style = "padding-bottom: 10px"),
         img(src = "IMG_20200420_114317.jpg", 
-            width = 400,
-            align = "left"),
-        h4("Developer"),
-        p("Bri Baker | 2021 \n"),
+            width = 350,
+            align = "left",
+            style = "padding-right: 30px; padding-bottom: 20px"),
+        h4("Tools"),
+        p("Flora: Use this to see the locations of
+          individuals of a species you choose"),
+        p("In Flower: Use this to make a list of species in flower 
+          for a given month, or compare between months"),
+        p("Location: Use this to see the locations 
+          of species at a given collection location"),
+        p("Commonly Collected Species: Use this to show new collectors 
+          some species they might be looking for"),
+        h4("Developer",
+           style = "padding-top: 40px"),
+        p("Bri Baker | 2021",
+          style = "padding-bottom: 10px"),
         h4("Data Sources"),
         p("CalFlora data download tool (2021)"),
         p("Santa Monica Mountains Rancho Sierra Vista 
@@ -122,18 +135,21 @@ ui <- fluidPage(
             inputId = "select_plant",
             label = h5("Select plant species:"),
             choices = list(
-              "Anemopsis californica" = "anecal",
-              "Artemesia douglasiana" = "artdou",
-              "Encelia californica" = "enccal",
-              "Eriogonum cinereum" = "ericin",
-              "Eriogonum fasciculatum" = "erifas",
-              "Eschscholzia californica" = "esccal",
-              "Grindelia camporum" = "gricam",
-              "Phacelia grandiflora" = "gricam",
-              "Rosa californica" = "roscal",
-              "Salvia leucophylla" = "salleu",
-              "Solanum xantii" = "solxan"
+              "Anemopsis californica",
+              "Artemesia douglasiana",
+              "Encelia californica",
+              "Eriogonum cinereum",
+              "Eriogonum fasciculatum",
+              "Eschscholzia californica",
+              "Grindelia camporum",
+              "Phacelia grandiflora",
+              "Rosa californica",
+              "Salvia leucophylla",
+              "Solanum xantii"
             )
+          ),
+          textOutput(
+            "plant_info"
           )
         ),
         mainPanel(
@@ -228,27 +244,48 @@ server <- function(input, output) {
   })
   
   ####----ID----####
+  
+  img_info <- reactive({
+    flowering_times %>% 
+      filter(taxon %in% input$select_plant) %>% 
+      slice(1)
+  })
+  
+  ###---outputs---###
+  output$plant_info <- renderText({
+    paste(
+      img_info()$taxon, "(", img_info()$common_name, 
+      ") is a ", img_info()$lifeform,
+      "of family", img_info()$family,
+      " that flowers from ", img_info()$start_bloom, 
+      " to ", img_info()$end_bloom, "."
+      
+    )
+  })
+  
   output$plantimg <- renderUI({
-    if(input$select_plant == "anecal"){
-      img(height = "70%", width = "70%", src = "ane_cal.jpg")}
-    else if(input$select_plant == "artdou"){
-      img(height = "75%", width = "75%", src = "art_dou.jpg")}
-    else if(input$select_plant == "enccal"){
-      img(height = "75%", width = "75%", src = "enc_cal.jpg")}
-    else if(input$select_plant == "ericin"){
-      img(height = "75%", width = "75%", src = "eri_cin.jpg")}
-    else if(input$select_plant == "esccal"){
-      img(height = "75%", width = "75%", src = "esc_cal.jpg")}
-    else if(input$select_plant == "gricam"){
-      img(height = "75%", width = "75%", src = "gri_cam.jpg")}
-    else if(input$select_plant == "phagra"){
-      img(height = "75%", width = "75%", src = "pha_gra.jpg")}
-    else if(input$select_plant == "roscal"){
-      img(height = "75%", width = "75%", src = "ros_cal.jpg")}
-    else if(input$select_plant == "salleu"){
-      img(height = "75%", width = "75%", src = "sal_leu.jpg")}
-    else if(input$select_plant == "solxan"){
-      img(height = "75%", width = "75%", src = "sol_xan.jpg")}
+    if(input$select_plant == "Anemopsis californica"){
+      img(height = 400, src = "ane_cal.jpg")}
+    else if(input$select_plant == "Artemesia douglasiana"){
+      img(height = 400, src = "art_dou.jpg")}
+    else if(input$select_plant == "Encelia californica"){
+      img(height = 400, src = "enc_cal.jpg")}
+    else if(input$select_plant == "Eriogonum cinereum"){
+      img(height = 400, src = "eri_cin.jpg")}
+    else if(input$select_plant == "Eriogonum fasciculatum"){
+      img(height = 400, src = "eri_fas.jpg")}
+    else if(input$select_plant == "Eschscholzia californica"){
+      img(height = 400, src = "esc_cal.jpg")}
+    else if(input$select_plant == "Grindelia camporum"){
+      img(height = 400, src = "gri_cam.jpg")}
+    else if(input$select_plant == "Phacelia grandiflora"){
+      img(height = 400, src = "pha_gra.jpg")}
+    else if(input$select_plant == "Rosa californica"){
+      img(height = 400, src = "ros_cal.jpg")}
+    else if(input$select_plant == "Salvia leucophylla"){
+      img(height = 400, src = "sal_leu.jpg")}
+    else if(input$select_plant == "Solanum xantii"){
+      img(height = 400, src = "sol_xan.jpg")}
   })
   
 }

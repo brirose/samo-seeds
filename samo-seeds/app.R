@@ -1,3 +1,4 @@
+#----------SETUP----------
 # functions
 library(tidyverse)
 library(shiny)
@@ -22,8 +23,10 @@ flowering_times <- read_csv(here("data/flowering_times.csv"))
 
 
 
-# UI 
 
+#----------UI----------
+
+##----------OVERVIEW----------
 ui <- fluidPage(
   theme = shinytheme("flatly"),
   navbarPage(
@@ -59,7 +62,7 @@ ui <- fluidPage(
       )
     ),# close overview
     
-    ####----TAXON TAB ----####
+##----------TAXON TAB----------
     tabPanel(
       "Flora",
       sidebarLayout(
@@ -82,7 +85,7 @@ ui <- fluidPage(
       )
     ), # close TAXON tab
     
-    ####----FLOWERING TAB ----####
+##----------FLOWERING TAB ----------
     tabPanel(
       "In Flower",
       sidebarLayout(
@@ -99,10 +102,9 @@ ui <- fluidPage(
           tableOutput("flowering_table")
         )
       )
-      
     ), # close FLOWERING tab
     
-    ####----LOCATION TAB----####
+##----------LOCATION TAB----------
     tabPanel(
       "Location",
       sidebarLayout(
@@ -126,7 +128,7 @@ ui <- fluidPage(
       )
     ),# close LOC tab
     
-    ####----ID----####
+##----------ID TAB----------
     tabPanel(
       "Commonly Collected Species",
       sidebarLayout(
@@ -160,11 +162,15 @@ ui <- fluidPage(
   )
 )
 
-# SERVER
+
+
+
+#----------SERVER----------
+
 server <- function(input, output) {
   
-####----TAXON TAB ----####
-  ##--filter from inputs--##
+##----------TAXON TAB----------
+###---filter from inputs---
    taxon_loc <- reactive({
     samo_plants %>% 
       filter(taxon %in% input$taxon_taxon)
@@ -176,15 +182,15 @@ server <- function(input, output) {
        slice(1)
    })
      
-  ##--outputs--##
-   #-map-#
+###---outputs---
+#map
   output$loc_map <- renderTmap({
     tm_basemap("Esri.WorldTopoMap") +
     tm_shape(taxon_loc())+
-      tm_dots() 
+      tm_dots()
   })
   
-  #-taxon info-#
+#taxon info
   output$sp_info <- renderTable({
     data.frame(
       "Attribute" = c("Taxon", 
@@ -198,18 +204,10 @@ server <- function(input, output) {
                  taxon_info()$family
       )
     )
-   # paste(
-      # input$taxon_taxon, "(", taxon_info()$common_name, 
-      # ") is a ", taxon_info()$lifeform,
-      # "of family", taxon_info()$family,
-      # " that flowers from ", taxon_info()$start_bloom, 
-      # " to ", taxon_info()$end_bloom, "."
-       
-   # )
   })
   
-####----FLOWERING TAB ----####
-  ##--filter from inputs--##
+##----------FLOWERING TAB----------
+###---filter from inputs---
   flowering_taxa <- reactive({
     flowering_times %>% 
       filter(month %in% input$flowering_months) %>% 
@@ -221,13 +219,13 @@ server <- function(input, output) {
       dplyr::select(-id)
   })
   
-  ##--output table--##
+###---output table---
   output$flowering_table <- renderTable({
     flowering_taxa()
   })
   
-####----LOCATION----####
-  ##--filter from inputs--##
+##----------LOCATION TAB----------
+###---filter from inputs---
   loc_place <- reactive({
     col_loc %>% 
       filter(
@@ -248,22 +246,23 @@ server <- function(input, output) {
                 join = st_within)
   })
     
-  ##--output--##
+###---output---
   output$flowering_map <- renderTmap({
     tm_basemap("Esri.WorldTopoMap") +
     tm_shape(loc_flowering())+
-      tm_dots(col = "taxon") 
+      tm_dots(col = "taxon",
+              id = "taxon") 
   })
   
-  ####----ID----####
-  
+##----------ID TAB----------
+###---inputs---  
   img_info <- reactive({
     flowering_times %>% 
       filter(taxon %in% input$select_plant) %>% 
       slice(1)
   })
   
-  ###---outputs---###
+###---outputs---
   output$plant_info <- renderText({
     paste(
       img_info()$taxon, "is also known as", img_info()$common_name, 
@@ -271,7 +270,6 @@ server <- function(input, output) {
       "of family", img_info()$family,
       " that flowers from ", img_info()$start_bloom, 
       " to ", img_info()$end_bloom, "."
-      
     )
   })
   
@@ -299,7 +297,6 @@ server <- function(input, output) {
     else if(input$select_plant == "Solanum xantii"){
       img(height = 350, src = "sol_xan.jpg")}
   })
-  
 }
 
 shinyApp(ui = ui, server = server)

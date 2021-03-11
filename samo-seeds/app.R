@@ -70,7 +70,7 @@ ui <- fluidPage(
             choices = unique(flowering_times$taxon)
           ),
           h4("Species information"),
-          textOutput(
+          tableOutput(
             "sp_info"
           )
         ),# close sidebar
@@ -136,7 +136,7 @@ ui <- fluidPage(
             label = h5("Select plant species:"),
             choices = list(
               "Anemopsis californica",
-              "Artemesia douglasiana",
+              "Artemisia douglasiana",
               "Encelia californica",
               "Eriogonum cinereum",
               "Eriogonum fasciculatum",
@@ -185,15 +185,27 @@ server <- function(input, output) {
   })
   
   #-taxon info-#
-  output$sp_info <- renderText({
-    paste(
-       input$taxon_taxon, "(", taxon_info()$common_name, 
-       ") is a ", taxon_info()$lifeform,
-       "of family", taxon_info()$family,
-       " that flowers from ", taxon_info()$start_bloom, 
-       " to ", taxon_info()$end_bloom, "."
-       
+  output$sp_info <- renderTable({
+    data.frame(
+      "Attribute" = c("Taxon", 
+                      "Common Name", 
+                      "Lifeform", 
+                      "Family"
+      ),
+      "Info" = c(input$taxon_taxon,
+                 taxon_info()$common_name,
+                 taxon_info()$lifeform,
+                 taxon_info()$family
+      )
     )
+   # paste(
+      # input$taxon_taxon, "(", taxon_info()$common_name, 
+      # ") is a ", taxon_info()$lifeform,
+      # "of family", taxon_info()$family,
+      # " that flowers from ", taxon_info()$start_bloom, 
+      # " to ", taxon_info()$end_bloom, "."
+       
+   # )
   })
   
 ####----FLOWERING TAB ----####
@@ -254,8 +266,8 @@ server <- function(input, output) {
   ###---outputs---###
   output$plant_info <- renderText({
     paste(
-      img_info()$taxon, "(", img_info()$common_name, 
-      ") is a ", img_info()$lifeform,
+      img_info()$taxon, "is also known as", img_info()$common_name, 
+      "and is a", img_info()$lifeform,
       "of family", img_info()$family,
       " that flowers from ", img_info()$start_bloom, 
       " to ", img_info()$end_bloom, "."
@@ -265,27 +277,27 @@ server <- function(input, output) {
   
   output$plantimg <- renderUI({
     if(input$select_plant == "Anemopsis californica"){
-      img(height = 400, src = "ane_cal.jpg")}
-    else if(input$select_plant == "Artemesia douglasiana"){
-      img(height = 400, src = "art_dou.jpg")}
+      img(height = 350, src = "ane_cal.jpg")}
+    else if(input$select_plant == "Artemisia douglasiana"){
+      img(height = 350, src = "art_dou.jpg")}
     else if(input$select_plant == "Encelia californica"){
-      img(height = 400, src = "enc_cal.jpg")}
+      img(height = 350, src = "enc_cal.jpg")}
     else if(input$select_plant == "Eriogonum cinereum"){
-      img(height = 400, src = "eri_cin.jpg")}
+      img(height = 350, src = "eri_cin.jpg")}
     else if(input$select_plant == "Eriogonum fasciculatum"){
-      img(height = 400, src = "eri_fas.jpg")}
+      img(height = 350, src = "eri_fas.jpg")}
     else if(input$select_plant == "Eschscholzia californica"){
-      img(height = 400, src = "esc_cal.jpg")}
+      img(height = 350, src = "esc_cal.jpg")}
     else if(input$select_plant == "Grindelia camporum"){
-      img(height = 400, src = "gri_cam.jpg")}
+      img(height = 350, src = "gri_cam.jpg")}
     else if(input$select_plant == "Phacelia grandiflora"){
-      img(height = 400, src = "pha_gra.jpg")}
+      img(height = 350, src = "pha_gra.jpg")}
     else if(input$select_plant == "Rosa californica"){
-      img(height = 400, src = "ros_cal.jpg")}
+      img(height = 350, src = "ros_cal.jpg")}
     else if(input$select_plant == "Salvia leucophylla"){
-      img(height = 400, src = "sal_leu.jpg")}
+      img(height = 350, src = "sal_leu.jpg")}
     else if(input$select_plant == "Solanum xantii"){
-      img(height = 400, src = "sol_xan.jpg")}
+      img(height = 350, src = "sol_xan.jpg")}
   })
   
 }
